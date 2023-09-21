@@ -25,16 +25,18 @@ def index():
         day = request.form.get("day") # ambil data dari input day
 
         # Insert data into database,  masukan data name, month, dan day ke data base
-        db.execute("INSERT INTO brithdays (name, month, day) VALUES(?, ?, ?)" , name, month, day)
+        db.execute("INSERT INTO birthdays (name, month, day) VALUES(?, ?, ?)" , name, month, day)
 
         # Go back to hpmepage, balik ke  https://127.0.0.1.5000/
         return redirect("/")
 
         # jika requestnya selain POST, maka tampilkan data dari tabel birthdays
-        else:
+    else:
 
-            # ambil seluruh data dari tabel brithdays, simpan di variabel brithdays
-            birthdays = db.execute(SELECT * FROM birthdays)
+        # ambil seluruh data dari tabel brithdays, simpan di variabel brithdays
+        birthdays = db.execute("SELECT * FROM birthdays")
 
-            # Salin isi variabel birthdays, lalu kirim ke index.html
-            return render_template("index.html", birthdays=birthdays)
+        # Salin isi variabel birthdays, lalu kirim ke index.html
+        return render_template("index.html", birthdays=birthdays)
+
+            

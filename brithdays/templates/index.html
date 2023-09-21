@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- Pembukaan dokumen html -->
+<html lang="en">
+<!-- Pengaturan head -->
+
+<head>
+    <!-- Mengatur link untuk mengambil font dari google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <!-- Mengatur link untuk mengambil syle css dari file styles.css dalam folder static -->
+    <link href="/static/style.css" rel="stylesheet">
+    <!-- Mengatur judul halaman web -->
+    <title>Birthdays</title>
+</head>
+<!-- Pengaturan body atau badan halaman web -->
+
+<body>
+    <!-- Membuat tulisan judul/heading besar -->
+    <div class="jumbotron">
+        <h1>Birthdays</h1>
+    </div>
+    <div class="container">
+        <div class="section">
+            <h2>Add a birthdays</h2>
+            <!-- Pembukaan form, pemberian method POST pada form -->
+            <form action="/" method="POST">
+                <!-- Membuat input teks -->
+                <input name="name" placeholder="Name" type="text">
+                <!-- Membuat input number -->
+                <input name="month" placeholder="Month" type="number" min="1" max="12">
+                <input name="day" placeholder="Day" type="number" min="1" max="31">
+                <!-- Membuat tombol submit -->
+                <input type="submit" value="Add Birthday">
+                <!-- Penutupan form -->
+            </form>
+        </div>
+    </div>
+    <!-- Membuat tabel HTML untuk menampilkan data dari tabel dalam database -->
+    <div class="section">
+        <!-- Pembukaan tabel -->
+        <table>
+            <!-- Kepala tabel -->
+            <thead>
+                <!-- Baris judul kolom atau table heading -->
+                <tr>
+                    <th>Name</th>
+                    <th>Birthday</th>
+                </tr>
+            </thead>
+            <!-- Badan tabel -->
+            <tbody>
+                <!-- Mengambil data dari variabel global birthdays yang dikirim dari app.py -->
+                <!-- Menggunakan perulangan for untuk menampilkan data satu demi satu (proses menampilkan data terus berulang untuk setiap datad) hingga data habis -->
+                {% for birthday in birthdays %}
+                <tr>
+                    <!-- Menampilkan isi kolom name -->
+                    <td>{{ birthday.name }}</td>
+                    <!-- Menampilkan isi kolom month dan day -->
+                    <td>{{ birthday.month }}/{{birthday.day }}</td>
+                </tr>
+                <!-- Akhir dari perulangan -->
+                {% endfor %}
+            </tbody>
+            <!-- Penutupan tabel -->
+        </table>
+    </div>
+</body>
+<!-- Penutupan dokumen HTML -->
+
+</html>
